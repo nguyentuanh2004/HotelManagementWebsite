@@ -1,0 +1,213 @@
+﻿
+@model WEBKHACHSAN.Models.DATPHONG
+
+@{
+    ViewBag.Title = "Chỉnh Sửa Đặt Phòng";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary"><i class="fas fa-edit"></i> Chỉnh Sửa Đặt Phòng</h2>
+        <a href="@Url.Action("PHONGDAT")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay Lại
+        </a>
+    </div>
+
+    @using (Html.BeginForm("Edit", "PHONGDAT", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IDDATPHONG)
+
+        <div class="card shadow-lg p-4">
+            <h4 class="fw-bold text-secondary"><i class="fas fa-calendar-alt"></i> Thông Tin Đặt Phòng</h4>
+            <hr />
+
+            <div class="row g-3">
+                <!-- Check-in -->
+                @{
+                    if (Session["username"] != null && Session["username"].ToString().ToLower() != "nhanviena")
+                    {
+                        <div class="col-md-6">
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                @Html.TextBoxFor(model => model.CHECKIN, new { @class = "form-control datetimepicker-input", placeholder = "Check In", data_target = "#date3", data_toggle = "datetimepicker", required = "required" })
+                                <label for="date3">Check In</label>
+                                @Html.ValidationMessageFor(model => model.CHECKIN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!-- Check-out -->
+                        <div class="col-md-6">
+                            <div class="form-floating date" id="date4" data-target-input="nearest">
+                                @Html.TextBoxFor(model => model.CHECKOUT, new { @class = "form-control datetimepicker-input", placeholder = "Check Out", data_target = "#date4", data_toggle = "datetimepicker", required = "required" })
+                                <label for="date4">Check Out</label>
+                                @Html.ValidationMessageFor(model => model.CHECKOUT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!-- Người lớn -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" name="Adult">
+                                    <option value="1" selected="@(Model.NGUOILON == 1)">Adult 1</option>
+                                    <option value="2" selected="@(Model.NGUOILON == 2)">Adult 2</option>
+                                    <option value="3" selected="@(Model.NGUOILON == 3)">Adult 3</option>
+                                </select>
+                                <label for="select1">Select Adult</label>
+                            </div>
+                        </div>
+
+                        <!-- Trẻ em -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" name="Child">
+                                    <option value="1" selected="@(Model.TREEM == 1)">Adult 1</option>
+                                    <option value="2" selected="@(Model.TREEM == 2)">Adult 2</option>
+                                    <option value="3" selected="@(Model.TREEM == 3)">Adult 3</option>
+                                </select>
+                                <label for="select2">Select Child</label>
+                            </div>
+                        </div>
+
+                        <!-- Ghi chú -->
+                        <div class="col-12">
+                            <div class="form-floating">
+                                @Html.TextAreaFor(model => model.GHICHU, new { @class = "form-control", rows = "3", placeholder = "Nhập ghi chú" })
+                                <label for="GHICHU">Ghi Chú</label>
+                                @Html.ValidationMessageFor(model => model.GHICHU, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                }
+
+                <!-- Trạng thái đặt phòng -->
+                @{
+                    if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                    {
+                        <div class="col-12">
+                            <div class="form-floating">
+                                @Html.DropDownListFor(model => model.IDTRANGTHAIDATPHONG,
+                                    new SelectList(da.TRANGTHAIDATPHONGs, "IDTRANGTHAIDATPHONG", "TENTRANGTHAIDATPHONG", Model.IDTRANGTHAIDATPHONG),
+                                    null,
+                                    new { @class = "form-select border-primary shadow-sm" })
+                                <label for="IDTRANGTHAIDATPHONG">Trạng Thái Đặt Phòng</label>
+                                @Html.ValidationMessageFor(model => model.IDTRANGTHAIDATPHONG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                    else if (Session["username"] != null && Session["username"].ToString().ToLower() == "nhanviena")
+                    {
+                        <div class="col-12">
+                            <div class="form-floating">
+                                @Html.DropDownListFor(model => model.IDTRANGTHAIDATPHONG,
+                                    new SelectList(da.TRANGTHAIDATPHONGs
+                                        .Where(x => x.IDTRANGTHAIDATPHONG == 3 || x.IDTRANGTHAIDATPHONG == 4),
+                                        "IDTRANGTHAIDATPHONG", "TENTRANGTHAIDATPHONG", Model.IDTRANGTHAIDATPHONG),
+                                    null,
+                                    new { @class = "form-select border-primary shadow-sm" })
+                                <label for="IDTRANGTHAIDATPHONG">Trạng Thái Đặt Phòng</label>
+                                @Html.ValidationMessageFor(model => model.IDTRANGTHAIDATPHONG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    }
+                }
+                <!-- Nút lưu -->
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-success px-4 py-2"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#date3, #date4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
+
+
+@*@model WEBKHACHSAN.Models.DATPHONG
+
+    @{
+        ViewBag.Title = "Edit";
+        WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+    }
+
+    <h2>Edit</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>DATPHONG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDDATPHONG)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CHECKIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CHECKIN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CHECKIN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CHECKOUT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CHECKOUT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CHECKOUT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGUOILON, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NGUOILON, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NGUOILON, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TREEM, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TREEM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TREEM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GHICHU, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GHICHU, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GHICHU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDTRANGTHAIDATPHONG, "IDTRANGTHAIDATPHONG", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IDTRANGTHAIDATPHONG ,
+                    new SelectList(da.TRANGTHAIDATPHONGs, "IDTRANGTHAIDATPHONG", "TENTRANGTHAIDATPHONG", Model.IDTRANGTHAIDATPHONG),
+                    null,
+                    new { @class = "form-select border-primary shadow-sm" })
+                @Html.ValidationMessageFor(model => model.IDTRANGTHAIDATPHONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "PHONGDAT")
+    </div>*@

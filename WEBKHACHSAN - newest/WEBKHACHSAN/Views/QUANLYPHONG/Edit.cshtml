@@ -1,0 +1,123 @@
+﻿@model WEBKHACHSAN.Models.PHONG
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center text-primary"><i class="fas fa-edit"></i> Chỉnh Sửa Phòng</h2>
+                <hr>
+
+                @using (Html.BeginForm("Edit", "QUANLYPHONG", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.IDPHONG)
+
+                    <!-- Ảnh phòng -->
+                    <div class="mb-3 text-center">
+                        <label class="form-label">Hình Ảnh</label>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            @foreach (var item in da.HINHANHPHONGs.Where(X => X.VITRI == 1))
+                            {
+                                if (item.IDPHONG == Model.IDPHONG)
+                                {
+                                    <div class="m-2">
+                                        <img id="imagePreview" src="~/IMAGEPHONG/@item.TENHINHANHPHONG" alt="Hình phòng" class="img-thumbnail"
+                                             style="width: 220px; height: 190px; object-fit: cover;">
+                                        <input type="hidden" name="HinhanhCu" value="@item.TENHINHANHPHONG" />
+                                    </div>
+                                }
+                            }
+                            <input type="file" name="fileanh" class="form-control" id="fileanh" accept="image/*" onchange="previewImage(event)">
+                        </div>
+                    </div>
+
+                    <!-- Số Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-door-closed"></i> Số Phòng</label>
+                        @Html.TextBoxFor(model => model.SOPHONG, new { @class = "form-control", placeholder = "Nhập số phòng", type = "number", required = "required" })
+                        @Html.ValidationMessageFor(model => model.SOPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Tên Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-hotel"></i> Tên Phòng</label>
+                        @Html.TextBoxFor(model => model.TENPHONG, new { @class = "form-control", placeholder = "Nhập tên phòng", required = "required" })
+                        @Html.ValidationMessageFor(model => model.TENPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Mô Tả -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-info-circle"></i> Mô Tả Phòng</label>
+                @Html.TextAreaFor(model => model.MOTAPHONG, new { @class = "form-control", maxlength= "1500", rows = 3, placeholder = "Nhập mô tả phòng" })
+                @Html.ValidationMessageFor(model => model.MOTAPHONG, "", new { @class = "text-danger" })
+            </div>
+
+                    <!-- Giá Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-dollar-sign"></i> Giá Phòng</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(model => model.GIAPHONG, new { @class = "form-control", placeholder = "Nhập giá phòng", type = "number", required = "required" })
+                            <span class="input-group-text">VNĐ</span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.GIAPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Số lượng giường -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-bed"></i> Số Lượng Giường</label>
+                        @Html.TextBoxFor(model => model.SOLUONGGIUONGPHONG, new { @class = "form-control", placeholder = "Nhập số lượng giường", type = "number" })
+                        @Html.ValidationMessageFor(model => model.SOLUONGGIUONGPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Số lượng phòng tắm -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-bath"></i> Số Lượng Phòng Tắm</label>
+                        @Html.TextBoxFor(model => model.SOLUONGPHONGTAM, new { @class = "form-control", placeholder = "Nhập số phòng tắm", type = "number" })
+                        @Html.ValidationMessageFor(model => model.SOLUONGPHONGTAM, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Loại Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-layer-group"></i> Loại Phòng</label>
+                        @Html.DropDownListFor(model => model.IDLOAIPHONG,
+                            new SelectList(da.LOAIPHONGs, "IDLOAIPHONG", "TENLOAIPHONG", Model.IDLOAIPHONG),
+                            null,
+                            new { @class = "form-select border-primary shadow-sm" })
+                        @Html.ValidationMessageFor(model => model.IDLOAIPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOSUAPHONG</label>
+
+                    <!-- Nút bấm -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <button type="submit" class="btn btn-primary px-4 py-2 me-3 shadow-sm"><i class="fas fa-save"></i> Lưu</button>
+                        <a href="@Url.Action("QUANLYPHONG", "QUANLYPHONG")" class="btn btn-secondary px-4 py-2 shadow-sm"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Script để hiển thị preview hình ảnh -->
+
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

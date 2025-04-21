@@ -1,0 +1,147 @@
+﻿@model WEBKHACHSAN.Models.PHONG
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center text-primary"><i class="fas fa-bed"></i> Thêm Phòng</h2>
+                <hr>
+
+                @using (Html.BeginForm("THEMPHONG", "QUANLYPHONG", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <!-- Ảnh phòng với Preview -->
+                    <div class="mb-3">
+                        <label class="form-label">Hình Ảnh</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-image"></i></span>
+                            <input type="file" name="fileanh" class="form-control" id="fileanh" accept="image/*" onchange="previewImage(event)">
+                        </div>
+                        <div class="mt-2">
+                            <img id="imagePreview" src="#" alt="Hình ảnh phòng" class="img-thumbnail d-none" style="max-width: 200px;">
+                        </div>
+                    </div>
+
+                    <!-- Số Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label">Số Phòng</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-hotel"></i></span>
+                            @Html.TextBoxFor(model => model.SOPHONG, new { @class = "form-control", placeholder = "Nhập số phòng", Type = "number", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SOPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Tên Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label">Tên Phòng</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-hotel"></i></span>
+                            @Html.TextBoxFor(model => model.TENPHONG, new { @class = "form-control", placeholder = "Nhập tên phòng", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TENPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Mô Tả Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label">Mô Tả Phòng</label>
+                        @Html.TextAreaFor(model => model.MOTAPHONG, new { @class = "form-control", placeholder = "Nhập mô tả", rows = 3, required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                        @Html.ValidationMessageFor(model => model.MOTAPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Giá Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label">Giá Phòng</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                            @Html.TextBoxFor(model => model.GIAPHONG, new { @class = "form-control", placeholder = "Nhập giá phòng", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                            <span class="input-group-text">VNĐ</span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.GIAPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Số lượng giường -->
+                    <div class="mb-3">
+                        <label class="form-label">Số Lượng Giường</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-bed"></i></span>
+                            @Html.TextBoxFor(model => model.SOLUONGGIUONGPHONG, new { @class = "form-control", placeholder = "Nhập số lượng giường", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SOLUONGGIUONGPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Số lượng phòng tắm -->
+                    <div class="mb-3">
+                        <label class="form-label">Số Lượng Phòng Tắm</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-bath"></i></span>
+                            @Html.TextBoxFor(model => model.SOLUONGPHONGTAM, new { @class = "form-control", placeholder = "Nhập số phòng tắm", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SOLUONGPHONGTAM, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Loại Phòng -->
+                    <div class="mb-3">
+                        <label class="form-label">Loại Phòng</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <select name="IDLOAIPHONG" class="form-select border-primary shadow-sm">
+                                @foreach (var item in da.LOAIPHONGs)
+                                {
+                                    if (Model != null && item.IDLOAIPHONG == Model.IDLOAIPHONG)
+                                    {
+                                        <option value="@item.IDLOAIPHONG" selected>@item.TENLOAIPHONG</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.IDLOAIPHONG">@item.TENLOAIPHONG</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.IDLOAIPHONG, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOTHEMPHONG</label>
+
+                    <!-- Nút bấm -->
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("QUANLYPHONG")" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay Lại
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Thêm Phòng
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Script để hiển thị preview hình ảnh -->
+
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+

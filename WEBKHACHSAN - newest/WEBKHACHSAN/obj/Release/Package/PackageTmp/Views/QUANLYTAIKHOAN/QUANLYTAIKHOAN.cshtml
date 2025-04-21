@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.TAIKHOAN>
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    ViewBag.active = 7;
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Quản lý Tài Khoản</h2>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="@Url.Action("THEMTAIKHOAN")" class="btn btn-success">
+            <i class="fas fa-user-plus"></i> Thêm tài khoản
+        </a>
+    </div>
+
+    <label style="color: red; font-weight: bold;">@TempData["QUANLYTAIKHOAN"]</label>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered shadow-lg">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Tên Đăng Nhập</th>
+                    <th>Mật Khẩu</th>
+                    <th>Trạng Thái</th>
+                    <th>Loại Tài Khoản</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="align-middle text-center">
+                        <td>@item.TENDANGNHAP</td>
+                        <td>******</td> @*Ẩn mật khẩu để bảo mật*@
+                        <td>
+                            @if (item.TRANGTHAI == 1)
+                            {
+                                <span class="badge bg-success">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Khóa</span>
+                            }
+                        </td>
+                        <td>
+                            @item.LOAITAIKHOAN.TENLOAITAIKHOAN
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { TENDANGNHAP = item.TENDANGNHAP })" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Sửa
+                            </a>
+                            <a href="@Url.Action("Delete", new { TENDANGNHAP = item.TENDANGNHAP })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                                <i class="fas fa-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

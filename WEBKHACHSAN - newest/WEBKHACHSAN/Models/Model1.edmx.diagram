@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50b9063d2ba34a1089f39268adcca059" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="db16275Model.DATPHONG" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.HINHANHPHONG" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.LOAIPHONG" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.LOAITAIKHOAN" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.PHONG" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.TAIKHOAN" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.THIETBIPHONG" Width="1.5" PointX="10.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.THONGTINKHACHHANG" Width="1.5" PointX="3.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db16275Model.TRANGTHAIDATPHONG" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="db16275Model.FK__DATPHONG__IDTRAN__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__DATPHONG__TENDAN__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__HINHANHPH__IDPHO__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__PHONG__IDLOAIPHO__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__TAIKHOAN__IDLOAI__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__PHONG__TENDANGNH__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__THIETBIPH__IDPHO__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="db16275Model.FK__THONGTINK__TENDA__4F7CD00D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

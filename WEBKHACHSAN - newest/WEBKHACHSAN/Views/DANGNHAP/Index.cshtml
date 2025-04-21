@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    ViewBag.active = 0;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập & Đăng ký</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg p-4 rounded-3" style="max-width: 400px; width: 100%;">
+            <ul class="nav nav-tabs mb-3" id="authTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="login-tab" href="#">Đăng nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="register-tab" href="#">Đăng ký</a>
+                </li>
+            </ul>
+
+            <!-- Đăng nhập -->
+            <div id="login-form">
+                <h4 class="text-center">Đăng nhập</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="login-username" class="form-label">Tên đăng nhập</label>
+                        <input type="text" name="UsernameLogin" class="form-control" id="login-username" required>
+                        <input type="hidden" name="check" value="0" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login-password" class="form-label">Mật khẩu</label>
+                        <input type="password" name="PasswordLogin" class="form-control" id="login-password" required>
+                        <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOLOGIN</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                </form>
+            </div>
+
+            <!-- Đăng ký -->
+            <div id="register-form" class="d-none">
+                <h4 class="text-center">Đăng ký</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="register-username" class="form-label">Tên đăng ky</label>
+                        <input type="text" name="UsernameRegister" class="form-control" id="register-username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register-password" class="form-label">Mật khẩu</label>
+                        <input type="password" name="PasswordRegister" class="form-control" id="register-password" required>
+                        <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOREGISTER</label>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // Kiểm tra nếu có trạng thái tab được gửi từ Server
+            var activeTab = "@ViewBag.ActiveTab";
+            if (activeTab === "register") {
+                showRegisterForm();
+            } else {
+                showLoginForm(); // Mặc định hiển thị form Đăng nhập
+            }
+
+            $("#login-tab").click(function(){
+                showLoginForm();
+                localStorage.setItem("activeTab", "login");
+            });
+
+            $("#register-tab").click(function(){
+                showRegisterForm();
+                localStorage.setItem("activeTab", "register");
+            });
+
+            function showLoginForm() {
+                $("#login-form").removeClass("d-none");
+                $("#register-form").addClass("d-none");
+                $("#login-tab").addClass("active");
+                $("#register-tab").removeClass("active");
+            }
+
+            function showRegisterForm() {
+                $("#register-form").removeClass("d-none");
+                $("#login-form").addClass("d-none");
+                $("#register-tab").addClass("active");
+                $("#login-tab").removeClass("active");
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+
+

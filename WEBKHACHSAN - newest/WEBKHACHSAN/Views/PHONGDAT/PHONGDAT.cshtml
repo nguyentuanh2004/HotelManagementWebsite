@@ -1,0 +1,227 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.PHONGDAT2_Result>
+
+@{
+    ViewBag.Title = "PHONGDAT";
+    ViewBag.active = 7;
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary"><i class="fas fa-bed"></i>Phòng Đã Đặt</h2>
+        @{
+            if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+            {
+                <a href="@Url.Action("Index", "DATPHONG")" class="btn btn-success">
+                    <i class="fas fa-plus-circle"></i> Thêm Đặt Phòng
+                </a>
+            }
+        }
+    <label style="color: red; font-weight: bold;">@TempData["THONGBAOXOAPHONGDAT"]</label>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover shadow-sm table-bordered">
+            <thead class="table-primary">
+                @{
+                    if (Session["username"] != null && Session["username"].ToString().ToLower() == "nhanviena")
+                    {
+                                <tr>
+                                    <th>SỐ PHÒNG</th>
+                                    <th>HÌNH ẢNH</th>
+                                    <th>TÊN PHÒNG</th>
+                                    <th>CHECK IN</th>
+                                    <th>CHECK OUT</th>
+                                    <th>Trạng thái</th>
+                                    <th class="text-center">THAO TÁC</th>
+                                </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>USER</th>
+                            <th>SỐ PHÒNG</th>
+                            <th>HÌNH ẢNH</th>
+                            <th>TÊN PHÒNG</th>
+                            <th>GIÁ PHÒNG</th>
+                            <th>CHECK IN</th>
+                            <th>CHECK OUT</th>
+                            <th>NGƯỜI LỚN</th>
+                            <th>TRẺ EM</th>
+                            @{
+                                if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                                {
+                                    <th>Trạng thái</th>
+                                }
+                            }
+                            <th class="text-center">THAO TÁC</th>
+                        </tr>
+
+                    }
+                }
+                @*<tr>
+            <th>USER</th>
+            <th>SỐ PHÒNG</th>
+            <th>HÌNH ẢNH</th>
+            <th>TÊN PHÒNG</th>
+            <th>GIÁ PHÒNG</th>
+            <th>CHECK IN</th>
+            <th>CHECK OUT</th>
+            <th>NGƯỜI LỚN</th>
+            <th>TRẺ EM</th>
+            @{
+                if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                {
+                    <th>Trạng thái</th>
+                }
+            }
+            <th class="text-center">THAO TÁC</th>
+        </tr>*@
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (Session["username"] != null && Session["username"].ToString().ToLower() == "nhanviena")
+                    {
+                        <tr>
+                            <td>@item.SOPHONG</td>
+                            <td>
+                                <img src="~/IMAGEPHONG/@item.TENHINHANHPHONG" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc;" alt="Hình ảnh" class="img-fluid">
+                            </td>   
+                            <td>@string.Format("{0:#,0} VNĐ", item.GIAPHONG)</td>
+                            <td>@item.CHECKIN</td>
+                            <td>@item.CHECKOUT</td>
+                            @{
+                                //if (Session["username"] != null && Session["username"].ToString().ToLower() == "nhanviena")
+                                //{
+                                foreach (var item2 in da.TRANGTHAIDATPHONGs)
+                                {
+                                    if (item2.IDTRANGTHAIDATPHONG == item.IDTRANGTHAIDATPHONG)
+                                    {
+                                            <td>@item2.TENTRANGTHAIDATPHONG</td>
+                                        //}
+                                    }
+                                }
+                            }
+                            <td class="text-center">
+                                @*@if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                                {*@
+                                    <a href="@Url.Action("Edit", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                @*}*@
+                                
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@item.TENDANGNHAP</td>
+                            <td>@item.SOPHONG</td>
+                            <td>
+                                <img src="~/IMAGEPHONG/@item.TENHINHANHPHONG" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc;" alt="Hình ảnh" class="img-fluid">
+                            </td>
+                            <td>@item.TENPHONG</td>
+                            <td>@string.Format("{0:#,0} VNĐ", item.GIAPHONG)</td>
+                            <td>@item.CHECKIN</td>
+                            <td>@item.CHECKOUT</td>
+                            <td>@item.NGUOILON</td>
+                            <td>@item.TREEM</td>
+                            @{
+                                if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                                {
+                                    foreach (var item2 in da.TRANGTHAIDATPHONGs)
+                                    {
+                                        if (item2.IDTRANGTHAIDATPHONG == item.IDTRANGTHAIDATPHONG)
+                                        {
+                                            <td>@item2.TENTRANGTHAIDATPHONG</td>
+                                        }
+                                    }
+                                }
+                            }
+                            <td class="text-center">
+                                @if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                                {
+                                    <a href="@Url.Action("Edit", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                    <a href="@Url.Action("Index", "DATPHONG")" class="btn btn-info btn-sm">
+                                        <i class="fas fa-shopping-cart"></i> Tiện nghi
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?');">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Delete", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?');">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                    <a href="@Url.Action("XEMCHITIETPHONG", "XEMCHITIETPHONG", new { IDPHONG = item.IDPHONG })" class="btn btn-info btn-sm">
+                                        <i class="fas fa-eye"></i> Chi Tiết
+                                    </a>
+                                    <a href="@Url.Action("Edit", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    @*<tr>
+                <td>@item.TENDANGNHAP</td>
+                <td>@item.SOPHONG</td>
+                <td>
+                    <img src="~/IMAGEPHONG/@item.TENHINHANHPHONG" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc;" alt="Hình ảnh" class="img-fluid">
+                </td>
+                <td>@item.TENPHONG</td>
+                <td>@string.Format("{0:#,0} VNĐ", item.GIAPHONG)</td>
+                <td>@item.CHECKIN</td>
+                <td>@item.CHECKOUT</td>
+                <td>@item.NGUOILON</td>
+                <td>@item.TREEM</td>
+                @{
+                    if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                    {
+                        foreach (var item2 in da.TRANGTHAIDATPHONGs)
+                        {
+                            if (item2.IDTRANGTHAIDATPHONG == item.IDTRANGTHAIDATPHONG)
+                            {
+                                <td>@item2.TENTRANGTHAIDATPHONG</td>
+                            }
+                        }
+                    }
+                }
+            <td class="text-center">
+                @if (Session["username"] != null && Session["username"].ToString().ToLower() == "admin")
+                {
+                    <a href="@Url.Action("Edit", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    <a href="@Url.Action("Index", "DATPHONG")" class="btn btn-info btn-sm">
+                        <i class="fas fa-shopping-cart"></i> Tiện nghi
+                    </a>
+                    <a href="@Url.Action("Delete", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?');">
+                        <i class="fas fa-trash"></i> Xóa
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Delete", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?');">
+                        <i class="fas fa-trash"></i> Xóa
+                    </a>
+                    <a href="@Url.Action("XEMCHITIETPHONG", "XEMCHITIETPHONG", new { IDPHONG = item.IDPHONG })" class="btn btn-info btn-sm">
+                        <i class="fas fa-eye"></i> Chi Tiết
+                    </a>
+                <a href="@Url.Action("Edit", new { IDDATPHONG = item.IDDATPHONG })" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                }
+            </td>
+            </tr>*@
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

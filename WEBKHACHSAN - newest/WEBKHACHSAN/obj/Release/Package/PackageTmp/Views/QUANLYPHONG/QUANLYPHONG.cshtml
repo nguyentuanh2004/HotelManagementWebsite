@@ -1,0 +1,121 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.PHONG>
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+    ViewBag.active = 8;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="text-center text-primary mb-4">Quản lý Tài Khoản</h2>
+        @Html.ActionLink("Thêm Mới", "THEMPHONG", null, new { @class = "btn btn-success" })
+    </div>
+
+    <label style="color: red; font-weight: bold;">@TempData["QUANLYPHONG"]</label>
+
+    <div class="table-responsive mt-3">
+        <table class="table table-striped table-bordered align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>SO PHONG</th>
+                    <th>Hình Ảnh</th>
+                    <th>Tên Phòng</th>
+                    <th>Mô Tả</th>
+                    <th>Giá Phòng</th>
+                    <th>Số Giường</th>
+                    <th>Số Phòng Tắm</th>
+                    <th>Loại phòng</th>
+                    <th>Tổng số phòng</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(x => x.SOPHONG))
+                {
+                    <tr>
+                        <td>@item.SOPHONG</td>
+                        <td>
+                            @foreach (var item2 in da.HINHANHPHONGs)
+                            {
+                                if (item.IDPHONG == item2.IDPHONG && item2.VITRI == 1)
+                                {
+                                    <img src="~/IMAGEPHONG/@item2.TENHINHANHPHONG" alt="Hình phòng" class="img-thumbnail" style="width: 100px; height: 80px; object-fit: cover;">
+                                }
+                            }
+                        </td>
+                        <td>@item.TENPHONG</td>
+                        <td>
+                            @{
+                                string moTaHienThi = @item.MOTAPHONG.Length > 98 ? @item.MOTAPHONG.Substring(0, 98) + "..." : @item.MOTAPHONG;
+                            }
+                            <p class="text-muted">@moTaHienThi</p>
+                        </td>
+                        <td>@string.Format("{0:#,0} VNĐ", item.GIAPHONG)</td>
+                        <td>@item.SOLUONGGIUONGPHONG</td>
+                        <td>@item.SOLUONGPHONGTAM</td>
+                        <td>@item.LOAIPHONG.TENLOAIPHONG</td>
+                        <td>
+                           @{
+                                int count = 0;
+    
+                                if ((item.SOPHONG >= 200 && item.SOPHONG < 300) || 
+                                    (item.SOPHONG >= 300 && item.SOPHONG < 400) || 
+                                    (item.SOPHONG >= 500 && item.SOPHONG < 600)) 
+                                {
+                                    if (item.SOPHONG % 2 == 0) {
+                                        count = da.PHONGs.Where(p => p.IDLOAIPHONG == item.IDLOAIPHONG && p.SOPHONG % 2 == 0).Count();
+                                    } else {
+                                        count = da.PHONGs.Where(p => p.IDLOAIPHONG == item.IDLOAIPHONG && p.SOPHONG % 2 != 0).Count(); 
+                                    }
+                                } 
+                                else {
+                                    count = da.PHONGs.Count(p => p.IDLOAIPHONG == item.IDLOAIPHONG);
+                                }
+                            }
+
+                            @count
+
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="@Url.Action("Edit", new { IDPHONG = item.IDPHONG })" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { IDPHONG = item.IDPHONG })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                    <i class="fas fa-trash-alt"></i> Xóa
+                                </a>
+
+                                <a href="@Url.Action("CONGPHONG", new { IDLOAIPHONG = item.IDLOAIPHONG, SOPHONG = item.SOPHONG })" class="btn btn-primary btn-sm" onclick="return confirm('Bạn có chắc chắn muốn mở thêm phòng nhân bản?');">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+
+                                <a href="@Url.Action("TRUPHONG", new { IDLOAIPHONG = item.IDLOAIPHONG, SOPHONG = item.SOPHONG })" class="btn btn-secondary btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa phòng nhân bản?');">
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                            </div>
+                        </td>
+
+                        <!--<td>-->
+                        <!-- Icon "+" có thể click -->
+                        <!--<a href="#" class="mx-2 text-success" onclick="alert('Bạn đã bấm +'); return false;">
+        <i class="fas fa-plus"></i>
+    </a>-->
+                        <!-- Văn bản ở giữa (có thể thay bằng dữ liệu động) -->
+                        <!--<span class="mx-2 fw-bold text-primary">Thông tin</span>-->
+                        <!-- Icon "-" có thể click -->
+                        <!--<a href="#" class="mx-2 text-danger" onclick="alert('Bạn đã bấm -'); return false;">
+            <i class="fas fa-minus"></i>
+        </a>
+    </td>-->
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Thêm Font Awesome để hiển thị icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

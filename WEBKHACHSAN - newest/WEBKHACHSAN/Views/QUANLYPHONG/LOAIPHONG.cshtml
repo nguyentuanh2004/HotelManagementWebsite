@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.LOAIPHONG>
+
+@{
+    ViewBag.Title = "LOAIPHONG";
+}
+
+<h2>LOAIPHONG</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENLOAIPHONG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOTALOAIPHONG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TENHINHANHLOAIPHONG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENLOAIPHONG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MOTALOAIPHONG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENHINHANHLOAIPHONG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDLOAIPHONG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDLOAIPHONG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDLOAIPHONG })
+        </td>
+    </tr>
+}
+
+</table>

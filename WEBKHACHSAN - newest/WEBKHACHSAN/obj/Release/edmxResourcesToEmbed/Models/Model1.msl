@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db16275ModelStoreContainer" CdmEntityContainer="db16275Entities">
+    <EntitySetMapping Name="DATPHONGs">
+      <EntityTypeMapping TypeName="db16275Model.DATPHONG">
+        <MappingFragment StoreEntitySet="DATPHONG">
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HINHANHPHONGs">
+      <EntityTypeMapping TypeName="db16275Model.HINHANHPHONG">
+        <MappingFragment StoreEntitySet="HINHANHPHONG">
+          <ScalarProperty Name="IDHINHANHPHONG" ColumnName="IDHINHANHPHONG" />
+          <ScalarProperty Name="TENHINHANHPHONG" ColumnName="TENHINHANHPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIPHONGs">
+      <EntityTypeMapping TypeName="db16275Model.LOAIPHONG">
+        <MappingFragment StoreEntitySet="LOAIPHONG">
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+          <ScalarProperty Name="TENLOAIPHONG" ColumnName="TENLOAIPHONG" />
+          <ScalarProperty Name="MOTALOAIPHONG" ColumnName="MOTALOAIPHONG" />
+          <ScalarProperty Name="TENHINHANHLOAIPHONG" ColumnName="TENHINHANHLOAIPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAITAIKHOANs">
+      <EntityTypeMapping TypeName="db16275Model.LOAITAIKHOAN">
+        <MappingFragment StoreEntitySet="LOAITAIKHOAN">
+          <ScalarProperty Name="IDLOAITAIKHOAN" ColumnName="IDLOAITAIKHOAN" />
+          <ScalarProperty Name="TENLOAITAIKHOAN" ColumnName="TENLOAITAIKHOAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHONGs">
+      <EntityTypeMapping TypeName="db16275Model.PHONG">
+        <MappingFragment StoreEntitySet="PHONG">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAIKHOANs">
+      <EntityTypeMapping TypeName="db16275Model.TAIKHOAN">
+        <MappingFragment StoreEntitySet="TAIKHOAN">
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="IDLOAITAIKHOAN" ColumnName="IDLOAITAIKHOAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THIETBIPHONGs">
+      <EntityTypeMapping TypeName="db16275Model.THIETBIPHONG">
+        <MappingFragment StoreEntitySet="THIETBIPHONG">
+          <ScalarProperty Name="IDTHIETBIPHONG" ColumnName="IDTHIETBIPHONG" />
+          <ScalarProperty Name="TENTHIETBIPHONG" ColumnName="TENTHIETBIPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THONGTINKHACHHANGs">
+      <EntityTypeMapping TypeName="db16275Model.THONGTINKHACHHANG">
+        <MappingFragment StoreEntitySet="THONGTINKHACHHANG">
+          <ScalarProperty Name="IDTHONGTINKHACHHANG" ColumnName="IDTHONGTINKHACHHANG" />
+          <ScalarProperty Name="TEN" ColumnName="TEN" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANGTHAIDATPHONGs">
+      <EntityTypeMapping TypeName="db16275Model.TRANGTHAIDATPHONG">
+        <MappingFragment StoreEntitySet="TRANGTHAIDATPHONG">
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+          <ScalarProperty Name="TENTRANGTHAIDATPHONG" ColumnName="TENTRANGTHAIDATPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BOOKPHONG" FunctionName="db16275Model.Store.BOOKPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.BOOKPHONG_Result">
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CAPNHATLOAIPHONG" FunctionName="db16275Model.Store.CAPNHATLOAIPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.CAPNHATLOAIPHONG_Result">
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+          <ScalarProperty Name="TENLOAIPHONG" ColumnName="TENLOAIPHONG" />
+          <ScalarProperty Name="MOTALOAIPHONG" ColumnName="MOTALOAIPHONG" />
+          <ScalarProperty Name="TENHINHANHLOAIPHONG" ColumnName="TENHINHANHLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CAPNHATPHONG" FunctionName="db16275Model.Store.CAPNHATPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.CAPNHATPHONG_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CAPNHATPHONGDAT" FunctionName="db16275Model.Store.CAPNHATPHONGDAT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.CAPNHATPHONGDAT_Result">
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CAPNHATPHONGDATTRANGTHAI3" FunctionName="db16275Model.Store.CAPNHATPHONGDATTRANGTHAI3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.CAPNHATPHONGDATTRANGTHAI3_Result">
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DANGKY" FunctionName="db16275Model.Store.DANGKY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.DANGKY_Result">
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="IDLOAITAIKHOAN" ColumnName="IDLOAITAIKHOAN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DANGNHAP" FunctionName="db16275Model.Store.DANGNHAP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.DANGNHAP_Result">
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="IDLOAITAIKHOAN" ColumnName="IDLOAITAIKHOAN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PHONGDAT2" FunctionName="db16275Model.Store.PHONGDAT2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.PHONGDAT2_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENHINHANHPHONG" ColumnName="TENHINHANHPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="THEMLOAIPHONG2" FunctionName="db16275Model.Store.THEMLOAIPHONG2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.THEMLOAIPHONG2_Result">
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+          <ScalarProperty Name="TENLOAIPHONG" ColumnName="TENLOAIPHONG" />
+          <ScalarProperty Name="MOTALOAIPHONG" ColumnName="MOTALOAIPHONG" />
+          <ScalarProperty Name="TENHINHANHLOAIPHONG" ColumnName="TENHINHANHLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="THEMPHONG" FunctionName="db16275Model.Store.THEMPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.THEMPHONG_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="THEMPHONGNHANBAN2" FunctionName="db16275Model.Store.THEMPHONGNHANBAN2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.THEMPHONGNHANBAN2_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="THEMTAIKHOAN" FunctionName="db16275Model.Store.THEMTAIKHOAN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.THEMTAIKHOAN_Result">
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="IDLOAITAIKHOAN" ColumnName="IDLOAITAIKHOAN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="XOALOAIPHONG" FunctionName="db16275Model.Store.XOALOAIPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.XOALOAIPHONG_Result">
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+          <ScalarProperty Name="TENLOAIPHONG" ColumnName="TENLOAIPHONG" />
+          <ScalarProperty Name="MOTALOAIPHONG" ColumnName="MOTALOAIPHONG" />
+          <ScalarProperty Name="TENHINHANHLOAIPHONG" ColumnName="TENHINHANHLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="XOAPHONG" FunctionName="db16275Model.Store.XOAPHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.XOAPHONG_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="XOAPHONGDAT" FunctionName="db16275Model.Store.XOAPHONGDAT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.XOAPHONGDAT_Result">
+          <ScalarProperty Name="IDDATPHONG" ColumnName="IDDATPHONG" />
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="CHECKIN" ColumnName="CHECKIN" />
+          <ScalarProperty Name="CHECKOUT" ColumnName="CHECKOUT" />
+          <ScalarProperty Name="NGUOILON" ColumnName="NGUOILON" />
+          <ScalarProperty Name="TREEM" ColumnName="TREEM" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="IDTRANGTHAIDATPHONG" ColumnName="IDTRANGTHAIDATPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="XOAPHONGNHANBAN" FunctionName="db16275Model.Store.XOAPHONGNHANBAN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db16275Model.XOAPHONGNHANBAN_Result">
+          <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+          <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+          <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+          <ScalarProperty Name="MOTAPHONG" ColumnName="MOTAPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="SOLUONGGIUONGPHONG" ColumnName="SOLUONGGIUONGPHONG" />
+          <ScalarProperty Name="SOLUONGPHONGTAM" ColumnName="SOLUONGPHONGTAM" />
+          <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <ScalarProperty Name="DELAYPHONG" ColumnName="DELAYPHONG" />
+          <ScalarProperty Name="IDLOAIPHONG" ColumnName="IDLOAIPHONG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

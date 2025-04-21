@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.LOAIPHONG>
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-primary"><i class="fas fa-bed"></i> Quản Lý Loại Phòng</h2>
+        <a href="@Url.Action("THEMLOAIPHONG", "QUANLYLOAIPHONG")" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> Thêm Mới
+        </a>
+    </div>
+
+    <label style="color: red; font-weight: bold;">@TempData["QUANLYLOAIPHONG"]</label>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Hình Ảnh</th>
+                    <th>Tên Loại Phòng</th>
+                    <th>Mô Tả</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="align-middle text-center">
+                        <td>
+                            <img src="~/IMAGEPHONG/@item.TENHINHANHLOAIPHONG" alt="Hình phòng"
+                                 class="img-thumbnail rounded shadow-sm" style="width: 120px; height: 80px; object-fit: cover;">
+                        </td>
+                        <td class="fw-bold">@item.TENLOAIPHONG</td>
+                        <td class="text-muted text-truncate" style="max-width: 300px;">
+                            @item.MOTALOAIPHONG
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { IDLOAIPHONG = item.IDLOAIPHONG })" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Sửa
+                            </a>
+                            <a href="@Url.Action("Delete", new { IDLOAIPHONG = item.IDLOAIPHONG })" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Bạn có chắc chắn muốn xóa loại phòng này?');">
+                                <i class="fas fa-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

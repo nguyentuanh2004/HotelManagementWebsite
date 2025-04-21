@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db16275Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DATPHONG">
+    <Key>
+      <PropertyRef Name="IDDATPHONG" />
+    </Key>
+    <Property Name="IDDATPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPHONG" Type="int" />
+    <Property Name="TENDANGNHAP" Type="varchar" MaxLength="200" />
+    <Property Name="CHECKIN" Type="datetime2" Precision="0" />
+    <Property Name="CHECKOUT" Type="datetime2" Precision="0" />
+    <Property Name="NGUOILON" Type="int" />
+    <Property Name="TREEM" Type="int" />
+    <Property Name="GHICHU" Type="nvarchar" MaxLength="200" />
+    <Property Name="IDTRANGTHAIDATPHONG" Type="int" />
+  </EntityType>
+  <EntityType Name="HINHANHPHONG">
+    <Key>
+      <PropertyRef Name="IDHINHANHPHONG" />
+    </Key>
+    <Property Name="IDHINHANHPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENHINHANHPHONG" Type="nvarchar" MaxLength="200" />
+    <Property Name="IDPHONG" Type="int" />
+    <Property Name="VITRI" Type="int" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="IDLOAIPHONG" />
+    </Key>
+    <Property Name="IDLOAIPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENLOAIPHONG" Type="nvarchar" MaxLength="200" />
+    <Property Name="MOTALOAIPHONG" Type="nvarchar" MaxLength="200" />
+    <Property Name="TENHINHANHLOAIPHONG" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="LOAITAIKHOAN">
+    <Key>
+      <PropertyRef Name="IDLOAITAIKHOAN" />
+    </Key>
+    <Property Name="IDLOAITAIKHOAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENLOAITAIKHOAN" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="IDPHONG" />
+    </Key>
+    <Property Name="IDPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SOPHONG" Type="int" />
+    <Property Name="TENPHONG" Type="nvarchar" MaxLength="200" />
+    <Property Name="MOTAPHONG" Type="nvarchar" MaxLength="1500" />
+    <Property Name="GIAPHONG" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SOLUONGGIUONGPHONG" Type="int" />
+    <Property Name="SOLUONGPHONGTAM" Type="int" />
+    <Property Name="TENDANGNHAP" Type="varchar" MaxLength="200" />
+    <Property Name="DELAYPHONG" Type="decimal" Precision="3" Scale="1" />
+    <Property Name="IDLOAIPHONG" Type="int" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="TENDANGNHAP" />
+    </Key>
+    <Property Name="TENDANGNHAP" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="MATKHAU" Type="varchar" MaxLength="200" />
+    <Property Name="TRANGTHAI" Type="int" />
+    <Property Name="IDLOAITAIKHOAN" Type="int" />
+  </EntityType>
+  <EntityType Name="THIETBIPHONG">
+    <Key>
+      <PropertyRef Name="IDTHIETBIPHONG" />
+    </Key>
+    <Property Name="IDTHIETBIPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENTHIETBIPHONG" Type="nvarchar" MaxLength="200" />
+    <Property Name="IDPHONG" Type="int" />
+  </EntityType>
+  <EntityType Name="THONGTINKHACHHANG">
+    <Key>
+      <PropertyRef Name="IDTHONGTINKHACHHANG" />
+    </Key>
+    <Property Name="IDTHONGTINKHACHHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="TENDANGNHAP" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TRANGTHAIDATPHONG">
+    <Key>
+      <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+    </Key>
+    <Property Name="IDTRANGTHAIDATPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENTRANGTHAIDATPHONG" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__DATPHONG__IDTRAN__4CA06362">
+    <End Role="TRANGTHAIDATPHONG" Type="Self.TRANGTHAIDATPHONG" Multiplicity="0..1" />
+    <End Role="DATPHONG" Type="Self.DATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAIDATPHONG">
+        <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+      </Principal>
+      <Dependent Role="DATPHONG">
+        <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATPHONG__TENDAN__4BAC3F29">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="DATPHONG" Type="Self.DATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="DATPHONG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HINHANHPH__IDPHO__4316F928">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+    <End Role="HINHANHPHONG" Type="Self.HINHANHPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Principal>
+      <Dependent Role="HINHANHPHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__IDLOAIPHO__403A8C7D">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="IDLOAIPHONG" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="IDLOAIPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__TENDANGNH__3F466844">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TAIKHOAN__IDLOAI__398D8EEE">
+    <End Role="LOAITAIKHOAN" Type="Self.LOAITAIKHOAN" Multiplicity="0..1" />
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAITAIKHOAN">
+        <PropertyRef Name="IDLOAITAIKHOAN" />
+      </Principal>
+      <Dependent Role="TAIKHOAN">
+        <PropertyRef Name="IDLOAITAIKHOAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THIETBIPH__IDPHO__45F365D3">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+    <End Role="THIETBIPHONG" Type="Self.THIETBIPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Principal>
+      <Dependent Role="THIETBIPHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THONGTINK__TENDA__4F7CD00D">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="THONGTINKHACHHANG" Type="Self.THONGTINKHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="THONGTINKHACHHANG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="BOOKPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEN" Type="nvarchar" Mode="In" />
+    <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+    <Parameter Name="CHECKIN" Type="datetime2" Mode="In" />
+    <Parameter Name="CHECKOUT" Type="datetime2" Mode="In" />
+    <Parameter Name="TENDANGNHAP" Type="varchar" Mode="In" />
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+    <Parameter Name="NGUOILON" Type="int" Mode="In" />
+    <Parameter Name="TREEM" Type="int" Mode="In" />
+    <Parameter Name="GHICHU" Type="nvarchar" Mode="In" />
+    <Parameter Name="SOPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CAPNHATLOAIPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENLOAIPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="MOTALOAIPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="TENHINHANHLOAIPHONG" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CAPNHATPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENHINHANHPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="SOPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="MOTAPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="GIAPHONG" Type="decimal" Mode="In" />
+    <Parameter Name="SOLUONGGIUONGPHONG" Type="int" Mode="In" />
+    <Parameter Name="SOLUONGPHONGTAM" Type="int" Mode="In" />
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CAPNHATPHONGDAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDDATPHONG" Type="int" Mode="In" />
+    <Parameter Name="CHECKIN" Type="datetime2" Mode="In" />
+    <Parameter Name="CHECKOUT" Type="datetime2" Mode="In" />
+    <Parameter Name="NGUOILON" Type="int" Mode="In" />
+    <Parameter Name="TREME" Type="int" Mode="In" />
+    <Parameter Name="GHICHU" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDTRANGTHAIDATPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CAPNHATPHONGDATTRANGTHAI3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDDATPHONG" Type="int" Mode="In" />
+    <Parameter Name="IDTRANGTHAIDATPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DANGKY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENDANGNHAP" Type="varchar" Mode="In" />
+    <Parameter Name="MATKHAU" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="DANGNHAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENDANGNHAP" Type="varchar" Mode="In" />
+    <Parameter Name="MATKHAU" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PHONGDAT2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENDANGNHAP" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="THEMLOAIPHONG2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENLOAIPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="MOTALOAIPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="TENHINHANHLOAIPHONG" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="THEMPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SOPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="MOTAPHONG" Type="nvarchar" Mode="In" />
+    <Parameter Name="GIAPHONG" Type="decimal" Mode="In" />
+    <Parameter Name="SOLUONGGIOUNGPHONG" Type="int" Mode="In" />
+    <Parameter Name="SOLUONGPHONGTAM" Type="int" Mode="In" />
+    <Parameter Name="TENDDANGNHAP" Type="varchar" Mode="In" />
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENHINHANHPHONG" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="THEMPHONGNHANBAN2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+    <Parameter Name="SOPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="THEMTAIKHOAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENDANGNHAP" Type="varchar" Mode="In" />
+    <Parameter Name="MATKHAU" Type="varchar" Mode="In" />
+    <Parameter Name="TRANGTHAI" Type="int" Mode="In" />
+    <Parameter Name="IDLOAITAIKHOAN" Type="int" Mode="In" />
+  </Function>
+  <Function Name="XOALOAIPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="XOAPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDPHONG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="XOAPHONGDAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDDATPHONG" Type="int" Mode="In" />
+    <Parameter Name="TENDANGNHAP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="XOAPHONGNHANBAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLOAIPHONG" Type="int" Mode="In" />
+    <Parameter Name="SOPHONG" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="db16275ModelStoreContainer">
+    <EntitySet Name="DATPHONG" EntityType="Self.DATPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HINHANHPHONG" EntityType="Self.HINHANHPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIPHONG" EntityType="Self.LOAIPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAITAIKHOAN" EntityType="Self.LOAITAIKHOAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THIETBIPHONG" EntityType="Self.THIETBIPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THONGTINKHACHHANG" EntityType="Self.THONGTINKHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANGTHAIDATPHONG" EntityType="Self.TRANGTHAIDATPHONG" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__DATPHONG__IDTRAN__4CA06362" Association="Self.FK__DATPHONG__IDTRAN__4CA06362">
+      <End Role="TRANGTHAIDATPHONG" EntitySet="TRANGTHAIDATPHONG" />
+      <End Role="DATPHONG" EntitySet="DATPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATPHONG__TENDAN__4BAC3F29" Association="Self.FK__DATPHONG__TENDAN__4BAC3F29">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+      <End Role="DATPHONG" EntitySet="DATPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HINHANHPH__IDPHO__4316F928" Association="Self.FK__HINHANHPH__IDPHO__4316F928">
+      <End Role="PHONG" EntitySet="PHONG" />
+      <End Role="HINHANHPHONG" EntitySet="HINHANHPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__IDLOAIPHO__403A8C7D" Association="Self.FK__PHONG__IDLOAIPHO__403A8C7D">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONG" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__TENDANGNH__3F466844" Association="Self.FK__PHONG__TENDANGNH__3F466844">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TAIKHOAN__IDLOAI__398D8EEE" Association="Self.FK__TAIKHOAN__IDLOAI__398D8EEE">
+      <End Role="LOAITAIKHOAN" EntitySet="LOAITAIKHOAN" />
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THIETBIPH__IDPHO__45F365D3" Association="Self.FK__THIETBIPH__IDPHO__45F365D3">
+      <End Role="PHONG" EntitySet="PHONG" />
+      <End Role="THIETBIPHONG" EntitySet="THIETBIPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THONGTINK__TENDA__4F7CD00D" Association="Self.FK__THONGTINK__TENDA__4F7CD00D">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+      <End Role="THONGTINKHACHHANG" EntitySet="THONGTINKHACHHANG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

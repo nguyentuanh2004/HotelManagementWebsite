@@ -1,0 +1,71 @@
+﻿@model WEBKHACHSAN.Models.LOAIPHONG
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary"><i class="fas fa-edit"></i> Chỉnh Sửa Loại Phòng</h2>
+        <a href="@Url.Action("QUANLYLOAIPHONG")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay Lại
+        </a>
+    </div>
+
+    @using (Html.BeginForm("Edit", "QUANLYLOAIPHONG", FormMethod.Post, new { enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IDLOAIPHONG) <!-- Trường ẩn lưu ID loại phòng -->
+
+<div class="card shadow-lg p-4">
+    <h4 class="fw-bold text-secondary"><i class="fas fa-info-circle"></i> Thông Tin Loại Phòng</h4>
+    <hr />
+
+    <!-- Ảnh hiện tại -->
+    <div class="mb-3 text-center">
+        <label class="form-label fw-bold"><i class="fas fa-image"></i> Hình Ảnh Hiện Tại</label>
+        <div class="d-flex flex-column align-items-center">
+            <img id="imagePreview" src="~/IMAGEPHONG/@Model.TENHINHANHLOAIPHONG"
+                 alt="Hình phòng" class="img-thumbnail mb-2" style="width: 220px; height: 190px; object-fit: cover;">
+            <input type="hidden" name="HinhanhCu" value="@Model.TENHINHANHLOAIPHONG" />
+            <input type="file" name="fileanh" class="form-control w-50 mt-2" id="fileanh" accept="image/*" onchange="previewImage(event)">
+        </div>
+    </div>
+
+    <!-- Tên loại phòng -->
+    <div class="mb-3">
+        <label class="form-label fw-bold"><i class="fas fa-tag"></i> Tên Loại Phòng</label>
+        @Html.TextBoxFor(model => model.TENLOAIPHONG, new { @class = "form-control", placeholder = "Nhập tên loại phòng", required = "required", data_val_required = "Vui lòng nhập tên loại phòng." })
+        @Html.ValidationMessageFor(model => model.TENLOAIPHONG, "", new { @class = "text-danger" })
+    </div>
+
+    <!-- Mô tả loại phòng -->
+    <div class="mb-3">
+        <label class="form-label fw-bold"><i class="fas fa-align-left"></i> Mô Tả</label>
+        @Html.TextAreaFor(model => model.MOTALOAIPHONG, new { @class = "form-control", rows = "3", placeholder = "Nhập mô tả loại phòng", required = "required", data_val_required = "Vui lòng nhập mô tả." })
+        @Html.ValidationMessageFor(model => model.MOTALOAIPHONG, "", new { @class = "text-danger" })
+    </div>
+
+    <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOSUALOAIPHONG</label>
+
+    <!-- Nút Lưu -->
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+    </div>
+</div>
+    }
+</div>
+
+<!-- Xem trước hình ảnh khi chọn file -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

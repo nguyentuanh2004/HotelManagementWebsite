@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WEBKHACHSAN.Models.HINHANHPHONG>
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    ViewBag.active = 12;
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 600px; /* Điều chỉnh chiều cao nếu cần */
+            overflow: hidden;
+        }
+
+            .hero-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 30px;
+            border-radius: 8px;
+            color: black;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    @*Room Start*@
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+                <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
+                <div class="hero-image">
+                    <img src="~/IMAGEPHONG/@ViewBag.TENHINHANHPHONG" alt="Hotel exterior">
+                    <div class="hero-text text-center">
+                        <h1 class="display-4 fw-bold text-uppercase">@ViewBag.TENPHONG</h1>
+                        <a href="@Url.Action("Index", "DATPHONG", new { IDPHONG = ViewBag.IDPHONG })" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+
+                @*Section giới thiệu*@
+                <div class="container text-center my-4">
+                    <p class="text-muted">@ViewBag.MOTAPHONG</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img src="~/IMAGEPHONG/@item.TENHINHANHPHONG" style="width: 100%; height: 300px; object-fit: cover; alt="Hình ảnh" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @*Room End*@
+</body>
+</html>
+

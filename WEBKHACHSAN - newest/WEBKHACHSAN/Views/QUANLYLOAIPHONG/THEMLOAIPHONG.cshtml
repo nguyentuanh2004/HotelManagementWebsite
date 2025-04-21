@@ -1,0 +1,66 @@
+﻿@model WEBKHACHSAN.Models.LOAIPHONG
+
+@{
+    ViewBag.Title = "~/Views/Shared/_LayoutPageUSER.cshtml";
+    WEBKHACHSAN.Models.KSEntities3 da = new WEBKHACHSAN.Models.KSEntities3();
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-primary"><i class="fas fa-plus-circle"></i> Thêm Loại Phòng</h2>
+        <a href="@Url.Action("QUANLYLOAIPHONG")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay Lại
+        </a>
+    </div>
+
+    @using (Html.BeginForm("THEMLOAIPHONG", "QUANLYLOAIPHONG", FormMethod.Post, new { enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="card shadow-lg p-4">
+    <h4 class="fw-bold text-secondary"><i class="fas fa-bed"></i> Thông Tin Loại Phòng</h4>
+    <hr />
+
+    <div class="mb-3">
+        <label class="form-label fw-bold"><i class="fas fa-tag"></i> Tên Loại Phòng</label>
+        @Html.TextBoxFor(model => model.TENLOAIPHONG, new { @class = "form-control", placeholder = "Nhập tên loại phòng", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+        @Html.ValidationMessageFor(model => model.TENLOAIPHONG, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold"><i class="fas fa-align-left"></i> Mô Tả</label>
+        @Html.TextAreaFor(model => model.MOTALOAIPHONG, new { @class = "form-control", rows = "3", placeholder = "Nhập mô tả loại phòng", required = "required", data_val_required = "Vui lòng điền vào trường này." })
+        @Html.ValidationMessageFor(model => model.MOTALOAIPHONG, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Hình Ảnh</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-image"></i></span>
+            <input type="file" name="fileanh" class="form-control" id="fileanh" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div class="mt-2">
+            <img id="imagePreview" src="#" alt="Hình ảnh phòng" class="img-thumbnail d-none" style="max-width: 200px;">
+        </div>
+    </div>
+
+    <label style="color: red; font-weight: bold;">@ViewBag.THONGBAOTHEMLOAIPHONG</label>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu Loại Phòng</button>
+    </div>
+</div>
+    }
+</div>
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

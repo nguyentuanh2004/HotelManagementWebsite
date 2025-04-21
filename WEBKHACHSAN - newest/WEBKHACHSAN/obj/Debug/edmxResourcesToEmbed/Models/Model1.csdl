@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db16275Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DATPHONG">
+    <Key>
+      <PropertyRef Name="IDDATPHONG" />
+    </Key>
+    <Property Name="IDDATPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPHONG" Type="Int32" />
+    <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CHECKIN" Type="DateTime" Precision="0" />
+    <Property Name="CHECKOUT" Type="DateTime" Precision="0" />
+    <Property Name="NGUOILON" Type="Int32" />
+    <Property Name="TREEM" Type="Int32" />
+    <Property Name="GHICHU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IDTRANGTHAIDATPHONG" Type="Int32" />
+    <NavigationProperty Name="TRANGTHAIDATPHONG" Relationship="Self.FK__DATPHONG__IDTRAN__4CA06362" FromRole="DATPHONG" ToRole="TRANGTHAIDATPHONG" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__DATPHONG__TENDAN__4BAC3F29" FromRole="DATPHONG" ToRole="TAIKHOAN" />
+  </EntityType>
+  <EntityType Name="HINHANHPHONG">
+    <Key>
+      <PropertyRef Name="IDHINHANHPHONG" />
+    </Key>
+    <Property Name="IDHINHANHPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENHINHANHPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IDPHONG" Type="Int32" />
+    <Property Name="VITRI" Type="Int32" />
+    <NavigationProperty Name="PHONG" Relationship="Self.FK__HINHANHPH__IDPHO__4316F928" FromRole="HINHANHPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="IDLOAIPHONG" />
+    </Key>
+    <Property Name="IDLOAIPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENLOAIPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MOTALOAIPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TENHINHANHLOAIPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHONGs" Relationship="Self.FK__PHONG__IDLOAIPHO__403A8C7D" FromRole="LOAIPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="LOAITAIKHOAN">
+    <Key>
+      <PropertyRef Name="IDLOAITAIKHOAN" />
+    </Key>
+    <Property Name="IDLOAITAIKHOAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENLOAITAIKHOAN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__IDLOAI__398D8EEE" FromRole="LOAITAIKHOAN" ToRole="TAIKHOAN" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="IDPHONG" />
+    </Key>
+    <Property Name="IDPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOPHONG" Type="Int32" />
+    <Property Name="TENPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MOTAPHONG" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+    <Property Name="GIAPHONG" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SOLUONGGIUONGPHONG" Type="Int32" />
+    <Property Name="SOLUONGPHONGTAM" Type="Int32" />
+    <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DELAYPHONG" Type="Decimal" Precision="3" Scale="1" />
+    <Property Name="IDLOAIPHONG" Type="Int32" />
+    <NavigationProperty Name="HINHANHPHONGs" Relationship="Self.FK__HINHANHPH__IDPHO__4316F928" FromRole="PHONG" ToRole="HINHANHPHONG" />
+    <NavigationProperty Name="LOAIPHONG" Relationship="Self.FK__PHONG__IDLOAIPHO__403A8C7D" FromRole="PHONG" ToRole="LOAIPHONG" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__PHONG__TENDANGNH__3F466844" FromRole="PHONG" ToRole="TAIKHOAN" />
+    <NavigationProperty Name="THIETBIPHONGs" Relationship="Self.FK__THIETBIPH__IDPHO__45F365D3" FromRole="PHONG" ToRole="THIETBIPHONG" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="TENDANGNHAP" />
+    </Key>
+    <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TRANGTHAI" Type="Int32" />
+    <Property Name="IDLOAITAIKHOAN" Type="Int32" />
+    <NavigationProperty Name="DATPHONGs" Relationship="Self.FK__DATPHONG__TENDAN__4BAC3F29" FromRole="TAIKHOAN" ToRole="DATPHONG" />
+    <NavigationProperty Name="LOAITAIKHOAN" Relationship="Self.FK__TAIKHOAN__IDLOAI__398D8EEE" FromRole="TAIKHOAN" ToRole="LOAITAIKHOAN" />
+    <NavigationProperty Name="PHONGs" Relationship="Self.FK__PHONG__TENDANGNH__3F466844" FromRole="TAIKHOAN" ToRole="PHONG" />
+    <NavigationProperty Name="THONGTINKHACHHANGs" Relationship="Self.FK__THONGTINK__TENDA__4F7CD00D" FromRole="TAIKHOAN" ToRole="THONGTINKHACHHANG" />
+  </EntityType>
+  <EntityType Name="THIETBIPHONG">
+    <Key>
+      <PropertyRef Name="IDTHIETBIPHONG" />
+    </Key>
+    <Property Name="IDTHIETBIPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENTHIETBIPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IDPHONG" Type="Int32" />
+    <NavigationProperty Name="PHONG" Relationship="Self.FK__THIETBIPH__IDPHO__45F365D3" FromRole="THIETBIPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="THONGTINKHACHHANG">
+    <Key>
+      <PropertyRef Name="IDTHONGTINKHACHHANG" />
+    </Key>
+    <Property Name="IDTHONGTINKHACHHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__THONGTINK__TENDA__4F7CD00D" FromRole="THONGTINKHACHHANG" ToRole="TAIKHOAN" />
+  </EntityType>
+  <EntityType Name="TRANGTHAIDATPHONG">
+    <Key>
+      <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+    </Key>
+    <Property Name="IDTRANGTHAIDATPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENTRANGTHAIDATPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DATPHONGs" Relationship="Self.FK__DATPHONG__IDTRAN__4CA06362" FromRole="TRANGTHAIDATPHONG" ToRole="DATPHONG" />
+  </EntityType>
+  <Association Name="FK__DATPHONG__IDTRAN__4CA06362">
+    <End Role="TRANGTHAIDATPHONG" Type="Self.TRANGTHAIDATPHONG" Multiplicity="0..1" />
+    <End Role="DATPHONG" Type="Self.DATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAIDATPHONG">
+        <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+      </Principal>
+      <Dependent Role="DATPHONG">
+        <PropertyRef Name="IDTRANGTHAIDATPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DATPHONG__TENDAN__4BAC3F29">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="DATPHONG" Type="Self.DATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="DATPHONG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HINHANHPH__IDPHO__4316F928">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+    <End Role="HINHANHPHONG" Type="Self.HINHANHPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Principal>
+      <Dependent Role="HINHANHPHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__IDLOAIPHO__403A8C7D">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="IDLOAIPHONG" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="IDLOAIPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TAIKHOAN__IDLOAI__398D8EEE">
+    <End Role="LOAITAIKHOAN" Type="Self.LOAITAIKHOAN" Multiplicity="0..1" />
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAITAIKHOAN">
+        <PropertyRef Name="IDLOAITAIKHOAN" />
+      </Principal>
+      <Dependent Role="TAIKHOAN">
+        <PropertyRef Name="IDLOAITAIKHOAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__TENDANGNH__3F466844">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THIETBIPH__IDPHO__45F365D3">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+    <End Role="THIETBIPHONG" Type="Self.THIETBIPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Principal>
+      <Dependent Role="THIETBIPHONG">
+        <PropertyRef Name="IDPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THONGTINK__TENDA__4F7CD00D">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="THONGTINKHACHHANG" Type="Self.THONGTINKHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="THONGTINKHACHHANG">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db16275Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DATPHONGs" EntityType="Self.DATPHONG" />
+    <EntitySet Name="HINHANHPHONGs" EntityType="Self.HINHANHPHONG" />
+    <EntitySet Name="LOAIPHONGs" EntityType="Self.LOAIPHONG" />
+    <EntitySet Name="LOAITAIKHOANs" EntityType="Self.LOAITAIKHOAN" />
+    <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+    <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+    <EntitySet Name="THIETBIPHONGs" EntityType="Self.THIETBIPHONG" />
+    <EntitySet Name="THONGTINKHACHHANGs" EntityType="Self.THONGTINKHACHHANG" />
+    <EntitySet Name="TRANGTHAIDATPHONGs" EntityType="Self.TRANGTHAIDATPHONG" />
+    <AssociationSet Name="FK__DATPHONG__IDTRAN__4CA06362" Association="Self.FK__DATPHONG__IDTRAN__4CA06362">
+      <End Role="TRANGTHAIDATPHONG" EntitySet="TRANGTHAIDATPHONGs" />
+      <End Role="DATPHONG" EntitySet="DATPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DATPHONG__TENDAN__4BAC3F29" Association="Self.FK__DATPHONG__TENDAN__4BAC3F29">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="DATPHONG" EntitySet="DATPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HINHANHPH__IDPHO__4316F928" Association="Self.FK__HINHANHPH__IDPHO__4316F928">
+      <End Role="PHONG" EntitySet="PHONGs" />
+      <End Role="HINHANHPHONG" EntitySet="HINHANHPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__IDLOAIPHO__403A8C7D" Association="Self.FK__PHONG__IDLOAIPHO__403A8C7D">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TAIKHOAN__IDLOAI__398D8EEE" Association="Self.FK__TAIKHOAN__IDLOAI__398D8EEE">
+      <End Role="LOAITAIKHOAN" EntitySet="LOAITAIKHOANs" />
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__TENDANGNH__3F466844" Association="Self.FK__PHONG__TENDANGNH__3F466844">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THIETBIPH__IDPHO__45F365D3" Association="Self.FK__THIETBIPH__IDPHO__45F365D3">
+      <End Role="PHONG" EntitySet="PHONGs" />
+      <End Role="THIETBIPHONG" EntitySet="THIETBIPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THONGTINK__TENDA__4F7CD00D" Association="Self.FK__THONGTINK__TENDA__4F7CD00D">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="THONGTINKHACHHANG" EntitySet="THONGTINKHACHHANGs" />
+    </AssociationSet>
+    <FunctionImport Name="BOOKPHONG" ReturnType="Collection(db16275Model.BOOKPHONG_Result)">
+      <Parameter Name="TEN" Mode="In" Type="String" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+      <Parameter Name="CHECKIN" Mode="In" Type="DateTime" />
+      <Parameter Name="CHECKOUT" Mode="In" Type="DateTime" />
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="NGUOILON" Mode="In" Type="Int32" />
+      <Parameter Name="TREEM" Mode="In" Type="Int32" />
+      <Parameter Name="GHICHU" Mode="In" Type="String" />
+      <Parameter Name="SOPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CAPNHATLOAIPHONG" ReturnType="Collection(db16275Model.CAPNHATLOAIPHONG_Result)">
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENLOAIPHONG" Mode="In" Type="String" />
+      <Parameter Name="MOTALOAIPHONG" Mode="In" Type="String" />
+      <Parameter Name="TENHINHANHLOAIPHONG" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CAPNHATPHONG" ReturnType="Collection(db16275Model.CAPNHATPHONG_Result)">
+      <Parameter Name="IDPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENHINHANHPHONG" Mode="In" Type="String" />
+      <Parameter Name="SOPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENPHONG" Mode="In" Type="String" />
+      <Parameter Name="MOTAPHONG" Mode="In" Type="String" />
+      <Parameter Name="GIAPHONG" Mode="In" Type="Decimal" />
+      <Parameter Name="SOLUONGGIUONGPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="SOLUONGPHONGTAM" Mode="In" Type="Int32" />
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CAPNHATPHONGDAT" ReturnType="Collection(db16275Model.CAPNHATPHONGDAT_Result)">
+      <Parameter Name="IDDATPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="CHECKIN" Mode="In" Type="DateTime" />
+      <Parameter Name="CHECKOUT" Mode="In" Type="DateTime" />
+      <Parameter Name="NGUOILON" Mode="In" Type="Int32" />
+      <Parameter Name="TREME" Mode="In" Type="Int32" />
+      <Parameter Name="GHICHU" Mode="In" Type="String" />
+      <Parameter Name="IDTRANGTHAIDATPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CAPNHATPHONGDATTRANGTHAI3" ReturnType="Collection(db16275Model.CAPNHATPHONGDATTRANGTHAI3_Result)">
+      <Parameter Name="IDDATPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="IDTRANGTHAIDATPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DANGKY" ReturnType="Collection(db16275Model.DANGKY_Result)">
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+      <Parameter Name="MATKHAU" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DANGNHAP" ReturnType="Collection(db16275Model.DANGNHAP_Result)">
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+      <Parameter Name="MATKHAU" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PHONGDAT2" ReturnType="Collection(db16275Model.PHONGDAT2_Result)">
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMLOAIPHONG2" ReturnType="Collection(db16275Model.THEMLOAIPHONG2_Result)">
+      <Parameter Name="TENLOAIPHONG" Mode="In" Type="String" />
+      <Parameter Name="MOTALOAIPHONG" Mode="In" Type="String" />
+      <Parameter Name="TENHINHANHLOAIPHONG" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMPHONG" ReturnType="Collection(db16275Model.THEMPHONG_Result)">
+      <Parameter Name="SOPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENPHONG" Mode="In" Type="String" />
+      <Parameter Name="MOTAPHONG" Mode="In" Type="String" />
+      <Parameter Name="GIAPHONG" Mode="In" Type="Decimal" />
+      <Parameter Name="SOLUONGGIOUNGPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="SOLUONGPHONGTAM" Mode="In" Type="Int32" />
+      <Parameter Name="TENDDANGNHAP" Mode="In" Type="String" />
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENHINHANHPHONG" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMPHONGNHANBAN2" ReturnType="Collection(db16275Model.THEMPHONGNHANBAN2_Result)">
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="SOPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMTAIKHOAN" ReturnType="Collection(db16275Model.THEMTAIKHOAN_Result)">
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+      <Parameter Name="MATKHAU" Mode="In" Type="String" />
+      <Parameter Name="TRANGTHAI" Mode="In" Type="Int32" />
+      <Parameter Name="IDLOAITAIKHOAN" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="XOALOAIPHONG" ReturnType="Collection(db16275Model.XOALOAIPHONG_Result)">
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="XOAPHONG" ReturnType="Collection(db16275Model.XOAPHONG_Result)">
+      <Parameter Name="IDPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="XOAPHONGDAT" ReturnType="Collection(db16275Model.XOAPHONGDAT_Result)">
+      <Parameter Name="IDDATPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="TENDANGNHAP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="XOAPHONGNHANBAN" ReturnType="Collection(db16275Model.XOAPHONGNHANBAN_Result)">
+      <Parameter Name="IDLOAIPHONG" Mode="In" Type="Int32" />
+      <Parameter Name="SOPHONG" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="BOOKPHONG_Result">
+    <Property Type="Int32" Name="IDDATPHONG" Nullable="false" />
+    <Property Type="Int32" Name="IDPHONG" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CHECKIN" Nullable="true" />
+    <Property Type="DateTime" Name="CHECKOUT" Nullable="true" />
+    <Property Type="Int32" Name="NGUOILON" Nullable="true" />
+    <Property Type="Int32" Name="TREEM" Nullable="true" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDTRANGTHAIDATPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CAPNHATLOAIPHONG_Result">
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="false" />
+    <Property Type="String" Name="TENLOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTALOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TENHINHANHLOAIPHONG" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="CAPNHATPHONG_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTAPHONG" Nullable="true" MaxLength="1500" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="SOLUONGGIUONGPHONG" Nullable="true" />
+    <Property Type="Int32" Name="SOLUONGPHONGTAM" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="DELAYPHONG" Nullable="true" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CAPNHATPHONGDAT_Result">
+    <Property Type="Int32" Name="IDDATPHONG" Nullable="false" />
+    <Property Type="Int32" Name="IDPHONG" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CHECKIN" Nullable="true" />
+    <Property Type="DateTime" Name="CHECKOUT" Nullable="true" />
+    <Property Type="Int32" Name="NGUOILON" Nullable="true" />
+    <Property Type="Int32" Name="TREEM" Nullable="true" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDTRANGTHAIDATPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CAPNHATPHONGDATTRANGTHAI3_Result">
+    <Property Type="Int32" Name="IDDATPHONG" Nullable="false" />
+    <Property Type="Int32" Name="IDPHONG" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CHECKIN" Nullable="true" />
+    <Property Type="DateTime" Name="CHECKOUT" Nullable="true" />
+    <Property Type="Int32" Name="NGUOILON" Nullable="true" />
+    <Property Type="Int32" Name="TREEM" Nullable="true" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDTRANGTHAIDATPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DANGKY_Result">
+    <Property Type="String" Name="TENDANGNHAP" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="MATKHAU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="TRANGTHAI" Nullable="true" />
+    <Property Type="Int32" Name="IDLOAITAIKHOAN" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DANGNHAP_Result">
+    <Property Type="String" Name="TENDANGNHAP" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="MATKHAU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="TRANGTHAI" Nullable="true" />
+    <Property Type="Int32" Name="IDLOAITAIKHOAN" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PHONGDAT2_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDDATPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENHINHANHPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="CHECKIN" Nullable="true" />
+    <Property Type="DateTime" Name="CHECKOUT" Nullable="true" />
+    <Property Type="Int32" Name="NGUOILON" Nullable="true" />
+    <Property Type="Int32" Name="TREEM" Nullable="true" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDTRANGTHAIDATPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="THEMLOAIPHONG2_Result">
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="false" />
+    <Property Type="String" Name="TENLOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTALOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TENHINHANHLOAIPHONG" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="THEMPHONG_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTAPHONG" Nullable="true" MaxLength="1500" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="SOLUONGGIUONGPHONG" Nullable="true" />
+    <Property Type="Int32" Name="SOLUONGPHONGTAM" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="DELAYPHONG" Nullable="true" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="THEMPHONGNHANBAN2_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTAPHONG" Nullable="true" MaxLength="1500" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="SOLUONGGIUONGPHONG" Nullable="true" />
+    <Property Type="Int32" Name="SOLUONGPHONGTAM" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="DELAYPHONG" Nullable="true" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="THEMTAIKHOAN_Result">
+    <Property Type="String" Name="TENDANGNHAP" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="MATKHAU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="TRANGTHAI" Nullable="true" />
+    <Property Type="Int32" Name="IDLOAITAIKHOAN" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="XOALOAIPHONG_Result">
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="false" />
+    <Property Type="String" Name="TENLOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTALOAIPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TENHINHANHLOAIPHONG" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="XOAPHONG_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTAPHONG" Nullable="true" MaxLength="1500" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="SOLUONGGIUONGPHONG" Nullable="true" />
+    <Property Type="Int32" Name="SOLUONGPHONGTAM" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="DELAYPHONG" Nullable="true" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="XOAPHONGDAT_Result">
+    <Property Type="Int32" Name="IDDATPHONG" Nullable="false" />
+    <Property Type="Int32" Name="IDPHONG" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CHECKIN" Nullable="true" />
+    <Property Type="DateTime" Name="CHECKOUT" Nullable="true" />
+    <Property Type="Int32" Name="NGUOILON" Nullable="true" />
+    <Property Type="Int32" Name="TREEM" Nullable="true" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="IDTRANGTHAIDATPHONG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="XOAPHONGNHANBAN_Result">
+    <Property Type="Int32" Name="IDPHONG" Nullable="false" />
+    <Property Type="Int32" Name="SOPHONG" Nullable="true" />
+    <Property Type="String" Name="TENPHONG" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="MOTAPHONG" Nullable="true" MaxLength="1500" />
+    <Property Type="Decimal" Name="GIAPHONG" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="SOLUONGGIUONGPHONG" Nullable="true" />
+    <Property Type="Int32" Name="SOLUONGPHONGTAM" Nullable="true" />
+    <Property Type="String" Name="TENDANGNHAP" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="DELAYPHONG" Nullable="true" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="IDLOAIPHONG" Nullable="true" />
+  </ComplexType>
+</Schema>
